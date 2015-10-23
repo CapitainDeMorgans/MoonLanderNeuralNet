@@ -1,17 +1,19 @@
 import time
 import tkinter as tk
 
-timestep = .05
+timestep = .02
 v = 0
 a = -1.6*timestep
 x = 500
-at = 0
+at = 3*timestep
 
 def keyPress(event):
-    at = 3
-    print('pressed')
+    global at
+    at = 3*timestep
+#     print('pressed')
     
 def keyRelease(event):
+    global at
     at = 0
     print('unpressed')
     
@@ -30,12 +32,11 @@ while True:
     time.sleep(timestep)
     x+=v
     v+=a
-    v+-at
+    v+=at
     if x <0:
         break
     print("%.2f" % x,"%.2f" % abs(v),at)
     
-    at = 0
     canvas.update()
 print('yo dead',v)
 
