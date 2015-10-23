@@ -1,15 +1,15 @@
 import time
 import tkinter as tk
 color = 'blue'
-timestep = .005
-w=1000
-h=750
+timestep = .01
+w=500
+h=400
 v = -1
 a = -1.6*timestep
-x = 500
+x = 300
 at = 3*timestep
 input = [0,0]
-weights = [1,1]
+weights = [-1,-1]
 
 
 # def keyPress(event):
@@ -29,14 +29,14 @@ weights = [1,1]
 root = tk.Tk()
 
 canvas = tk.Canvas(root, width=w, height=h)
-# 
+ 
 # canvas.bind_all('<KeyRelease>', keyRelease)
 # canvas.bind_all('<Key>', keyPress)
 
 canvas.pack()
 def finalNeuron(input,weight,thresh)->bool:
     sum = 0
-    for x in range(0,len(input)-1):
+    for x in range(0,len(input)):
         sum += input[x]*weight[x]
     print(sum)
     return sum >= thresh
@@ -56,8 +56,8 @@ while True:
     x+=v
     v+=a
     v+=at
-    input = [(h-x)/100,v]
-    if finalNeuron(input,weights,4):
+    input = [x/100,v]
+    if finalNeuron(input,weights,0):
         color = 'red'
         at = 3*timestep
     else:
